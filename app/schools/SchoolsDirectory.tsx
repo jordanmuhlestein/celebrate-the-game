@@ -14,10 +14,10 @@ type School = {
   PrimaryColor: string | null;
   SecondaryColor: string | null;
   conferences?: {
-    ConferenceAbbreviation: string;
-    ConferencePrimaryColor: string;
-    ConferenceSecondaryColor: string;
-  };
+  ConferenceAbbreviation: string;
+  ConferencePrimaryColor: string;
+  ConferenceSecondaryColor: string;
+}[];
 };
 
 export default function SchoolsDirectory({
@@ -36,9 +36,9 @@ export default function SchoolsDirectory({
         school.Nickname?.toLowerCase().includes(term) ||
         school.City?.toLowerCase().includes(term) ||
         school.State?.toLowerCase().includes(term) ||
-        school.conferences?.ConferenceAbbreviation
-          ?.toLowerCase()
-          .includes(term)
+        school.conferences?.[0]?.ConferenceAbbreviation
+  ?.toLowerCase()
+  .includes(term)
       );
     });
   }, [schools, search]);
@@ -138,27 +138,22 @@ export default function SchoolsDirectory({
                 )}
               </div>
 
-              {school.conferences && (
-                <div
-                  style={{
-                    backgroundColor:
-                      school.conferences
-                        .ConferencePrimaryColor,
-                    color:
-                      school.conferences
-                        .ConferenceSecondaryColor,
-                    padding: "4px 10px",
-                    borderRadius: "999px",
-                    fontSize: "0.8rem",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {
-                    school.conferences
-                      .ConferenceAbbreviation
-                  }
-                </div>
-              )}
+              {school.conferences?.[0] && (
+  <div
+    style={{
+      backgroundColor:
+        school.conferences[0].ConferencePrimaryColor,
+      color:
+        school.conferences[0].ConferenceSecondaryColor,
+      padding: "4px 10px",
+      borderRadius: "999px",
+      fontSize: "0.8rem",
+      fontWeight: "bold",
+    }}
+  >
+    {school.conferences[0].ConferenceAbbreviation}
+  </div>
+)}
             </div>
           </Link>
         ))}
