@@ -1,14 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
-export default function FeedbackPage() {
-  const searchParams = useSearchParams();
-
+export default function FeedbackPage({
+  searchParams,
+}: {
+  searchParams: {
+    page?: string;
+  };
+}) {
   const sourcePage =
-    searchParams.get("page") || "/";
+    searchParams.page || "/";
 
   const [feedbackType, setFeedbackType] =
     useState("General Feedback");
@@ -66,16 +69,16 @@ export default function FeedbackPage() {
       </p>
 
       <p
-  style={{
-    backgroundColor: "#f5f5f5",
-    padding: "10px",
-    borderRadius: "6px",
-    border: "1px solid #ddd",
-  }}
->
-  <strong>Page being reviewed:</strong>{" "}
-  {sourcePage}
-</p>
+        style={{
+          backgroundColor: "#f5f5f5",
+          padding: "10px",
+          borderRadius: "6px",
+          border: "1px solid #ddd",
+        }}
+      >
+        <strong>Page being reviewed:</strong>{" "}
+        {sourcePage}
+      </p>
 
       {submitted && (
         <div
@@ -108,6 +111,8 @@ export default function FeedbackPage() {
             padding: "10px",
             marginTop: "6px",
             marginBottom: "20px",
+            border: "1px solid #ccc",
+            borderRadius: "6px",
           }}
         >
           <option>
@@ -132,24 +137,26 @@ export default function FeedbackPage() {
         </label>
 
         <textarea
-  value={feedbackText}
-  onChange={(e) =>
-    setFeedbackText(e.target.value)
-  }
-  rows={8}
-  required
-  placeholder="Share a correction, suggestion, bug report, or idea..."
-  style={{
-    width: "100%",
-    padding: "12px",
-    marginTop: "6px",
-    border: "2px solid #cfcfcf",
-    borderRadius: "8px",
-    backgroundColor: "#ffffff",
-    fontSize: "1rem",
-    resize: "vertical",
-  }}
-/>
+          value={feedbackText}
+          onChange={(e) =>
+            setFeedbackText(
+              e.target.value
+            )
+          }
+          rows={8}
+          required
+          placeholder="Share a correction, suggestion, bug report, or idea..."
+          style={{
+            width: "100%",
+            padding: "12px",
+            marginTop: "6px",
+            border: "2px solid #cfcfcf",
+            borderRadius: "8px",
+            backgroundColor: "#ffffff",
+            fontSize: "1rem",
+            resize: "vertical",
+          }}
+        />
 
         <button
           type="submit"
