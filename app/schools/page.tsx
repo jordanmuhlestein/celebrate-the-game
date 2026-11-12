@@ -28,10 +28,33 @@ export default async function SchoolsPage() {
   }
 
   return (
-    <main style={{ padding: "20px" }}>
+    <main
+      style={{
+        maxWidth: "1400px",
+        margin: "0 auto",
+        padding: "20px",
+      }}
+    >
       <h1>Schools Directory</h1>
 
       <SchoolsDirectory schools={schools || []} />
+
+      <div
+        style={{
+          marginTop: "40px",
+          textAlign: "center",
+        }}
+      >
+        <Link
+          href="/feedback?page=/schools"
+          style={{
+            color: "#1B5E20",
+            fontWeight: "bold",
+          }}
+        >
+          Suggest a correction or improvement
+        </Link>
+      </div>
     </main>
   );
 }

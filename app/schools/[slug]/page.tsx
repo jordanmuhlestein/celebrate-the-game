@@ -391,6 +391,13 @@ const { data: rivalries } = await supabase
     <p>{data.NotesForVisitingFans}</p>
   </div>
 </div>
+<Link
+  href={`/feedback?page=${encodeURIComponent(
+    `/schools/${slug}`
+  )}`}
+>
+  Suggest a correction or improvement
+</Link>
     </main>
   );
 }

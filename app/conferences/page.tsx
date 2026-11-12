@@ -15,6 +15,7 @@ export default async function ConferencesPage() {
     schools?.reduce((acc, school) => {
       acc[school.ConferenceID] =
         (acc[school.ConferenceID] || 0) + 1;
+
       return acc;
     }, {} as Record<number, number>) || {};
 
@@ -23,13 +24,20 @@ export default async function ConferencesPage() {
   }
 
   return (
-    <main style={{ padding: "20px" }}>
+    <main
+      style={{
+        maxWidth: "1400px",
+        margin: "0 auto",
+        padding: "20px",
+      }}
+    >
       <h1>Conferences Directory</h1>
 
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+          gridTemplateColumns:
+            "repeat(auto-fill, minmax(320px, 1fr))",
           gap: "20px",
           marginTop: "20px",
         }}
@@ -42,11 +50,10 @@ export default async function ConferencesPage() {
               textDecoration: "none",
               color: "inherit",
               border: "1px solid #ccc",
-              borderTop: `8px solid ${conference.PrimaryColor}`,
               borderRadius: "12px",
               padding: "16px",
-              boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
-              transition: "all 0.2s ease",
+              boxShadow:
+                "0 4px 10px rgba(0,0,0,0.15)",
             }}
           >
             <div
@@ -57,8 +64,10 @@ export default async function ConferencesPage() {
                 marginBottom: "16px",
                 padding: "12px",
                 borderRadius: "8px",
-                backgroundColor: conference.ConferencePrimaryColor,
-                color: conference.ConferenceSecondaryColor,
+                backgroundColor:
+                  conference.ConferencePrimaryColor,
+                color:
+                  conference.ConferenceSecondaryColor,
               }}
             >
               {conference.ConferenceAbbreviation}
@@ -70,10 +79,12 @@ export default async function ConferencesPage() {
               style={{
                 fontSize: "1.2rem",
                 fontWeight: "bold",
-                margin: "10px 0",
               }}
             >
-              {schoolCounts[conference.ConferenceID] || 0} Member Schools
+              {schoolCounts[
+                conference.ConferenceID
+              ] || 0}{" "}
+              Member Schools
             </p>
 
             {conference.FoundedYear > 0 && (
@@ -83,9 +94,28 @@ export default async function ConferencesPage() {
               </p>
             )}
 
-            <p>{conference.ConferenceDescription}</p>
+            <p>
+              {conference.ConferenceDescription}
+            </p>
           </Link>
         ))}
+      </div>
+
+      <div
+        style={{
+          marginTop: "40px",
+          textAlign: "center",
+        }}
+      >
+        <Link
+          href="/feedback?page=/conferences"
+          style={{
+            color: "#1B5E20",
+            fontWeight: "bold",
+          }}
+        >
+          Suggest a correction or improvement
+        </Link>
       </div>
     </main>
   );
