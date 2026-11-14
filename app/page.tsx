@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -16,18 +17,20 @@ export default function HomePage() {
     paddingTop: "40px",
   }}
 >
-  <h1
-    style={{
-      fontSize: "4rem",
-      fontWeight: "800",
-      color: "#1B5E20",
-      letterSpacing: "-1px",
-      marginBottom: "16px",
-      textTransform: "uppercase",
-    }}
-  >
-    Celebrate The Game
-  </h1>
+  <Image
+  src="/celebrate-the-game-logo.png"
+  alt="Celebrate The Game"
+  width={800}
+  height={300}
+  priority
+  style={{
+    maxWidth: "700px",
+    width: "100%",
+    height: "auto",
+    margin: "0 auto 24px auto",
+    display: "block",
+  }}
+/>
 
   <div
     style={{
@@ -103,7 +106,7 @@ export default function HomePage() {
   }}
 ><p>  </p>
   <div>
-    <strong>139</strong>
+    <strong>138</strong>
     <br />
     Schools
   </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Navbar() {
@@ -28,7 +29,16 @@ export default function Navbar() {
             letterSpacing: "0.5px",
           }}
         >
-          CELEBRATE THE GAME
+          <Image
+  src="/celebrate-the-game-logo.png"
+  alt="Celebrate The Game"
+  width={220}
+  height={80}
+  style={{
+    height: "60px",
+    width: "auto",
+  }}
+/>
         </Link>
 
         <div
@@ -69,6 +79,17 @@ export default function Navbar() {
           >
             Conferences
           </Link>
+
+          <Link
+  href="/about"
+  style={{
+    color: "white",
+    textDecoration: "none",
+    fontWeight: "600",
+  }}
+>
+  About
+</Link>
 
           <Link
   href="/feedback"
