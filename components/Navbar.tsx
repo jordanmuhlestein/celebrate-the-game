@@ -30,12 +30,12 @@ export default function Navbar() {
           }}
         >
           <Image
-  src="/celebrate-the-game-logo.png"
+  src="/simple-celebrate-transparent-logo.png"
   alt="Celebrate The Game"
   width={220}
   height={80}
   style={{
-    height: "60px",
+    height: "90px",
     width: "auto",
   }}
 />
