@@ -32,6 +32,28 @@ const { data: rivalries } = await supabase
   .select("*")
   .eq("SchoolID", data.SchoolID);
 
+  console.log(
+  "SchoolID:",
+  data.SchoolID
+);
+
+const { data: experiences, error: experiencesError } =
+  await supabase
+    .from("experiences")
+    .select("*")
+    .eq("school_id", data.SchoolID);
+
+console.log(
+  "Experiences:",
+  experiences
+);
+
+console.log(
+  "Experiences Error:",
+  experiencesError
+);
+
+
 
 
 
@@ -306,6 +328,131 @@ const { data: rivalries } = await supabase
 
     <p>{data.SchoolHistory}</p>
   </div>
+
+<div
+  style={{
+    border: "1px solid #ccc",
+    borderRadius: "12px",
+    padding: "20px",
+    boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+    gridColumn: "1 / -1",
+  }}
+>
+  <h2
+    style={{
+      backgroundColor: data.PrimaryColor,
+      color: data.SecondaryColor,
+      margin: "-20px -20px 20px -20px",
+      padding: "12px",
+      borderTopLeftRadius: "12px",
+      borderTopRightRadius: "12px",
+      fontSize: "1rem",
+    }}
+  >
+    <b>⭐ Must Experience</b>
+  </h2>
+
+  {experiences && experiences.length > 0 ? (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns:
+          "repeat(auto-fit, minmax(250px, 1fr))",
+        gap: "16px",
+      }}
+    >
+      {experiences.map((experience) => (
+        <div
+  key={experience.experience_id}
+  style={{
+    border: "1px solid #ddd",
+    borderRadius: "8px",
+    padding: "16px",
+    backgroundColor: "#fafafa",
+  }}
+>
+<div
+  style={{
+    fontSize: "1.1rem",
+    fontWeight: "bold",
+    marginBottom: "8px",
+  }}
+>
+  {"⭐".repeat(experience.ctg_rating || 1)}
+  {" "}
+
+  {experience.icon_emoji}
+  {" "}
+
+<Link
+  href={`/experiences/${experience.experience_slug}`}
+  style={{
+    color: data.PrimaryColor,
+    textDecoration: "underline",
+    fontWeight: "bold",
+  }}
+>
+  {experience.experience_name}
+</Link>
+</div>
+
+
+  <div
+    style={{
+      fontSize: ".85rem",
+      color: "#666",
+      marginBottom: "10px",
+    }}
+  >
+    {experience.experience_type}
+  </div>
+
+  <div
+    style={{
+      marginBottom: "12px",
+    }}
+  >
+    {experience.short_description}
+  </div>
+
+  {experience.best_time_to_experience && (
+    <div
+      style={{
+        fontSize: ".8rem",
+        color: "#555",
+        marginBottom: "8px",
+      }}
+    >
+      <strong>Best Time:</strong>{" "}
+      {experience.best_time_to_experience}
+    </div>
+  )}
+
+  {experience.visitor_tip && (
+    <div
+      style={{
+        fontSize: ".8rem",
+        color: "#444",
+        backgroundColor: "#f2f2f2",
+        padding: "8px",
+        borderRadius: "6px",
+      }}
+    >
+      <strong>Visitor Tip:</strong>{" "}
+      {experience.visitor_tip}
+    </div>
+  )}
+</div>
+      ))}
+    </div>
+  ) : (
+    <p>
+      Experiences for this school are still being
+      added.
+    </p>
+  )}
+</div>
+
 <div
   style={{
     border: "1px solid #ccc",
@@ -322,6 +469,7 @@ const { data: rivalries } = await supabase
       padding: "12px",
       borderTopLeftRadius: "12px",
       borderTopRightRadius: "12px",
+      fontWeight: "bold",
       fontSize: "1rem",
     }}
   >
@@ -363,6 +511,8 @@ const { data: rivalries } = await supabase
   <p>No rivalry information available.</p>
 )}
 </div>
+
+
 
   <div
     style={{
