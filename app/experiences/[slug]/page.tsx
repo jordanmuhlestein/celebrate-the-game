@@ -30,25 +30,22 @@ export default async function ExperiencePage({
 
 const school = experience.schools;
 
-const { data: heroPhoto } = await supabase
+const { data: photos } = await supabase
   .from("experience_photos")
   .select("*")
   .eq(
     "experience_id",
     experience.experience_id
   )
-  .eq("featured_flag", true)
-  .single();
+  .order("sort_order");
+const heroPhoto =
+  photos && photos.length > 0
+    ? photos[0]
+    : null;
 
-  console.log(
-  "Experience ID:",
-  experience.experience_id
-);
+   
 
-console.log(
-  "Hero Photo:",
-  heroPhoto
-);
+
 
 const { data: relatedExperiences } = await supabase
   .from("experiences")
@@ -132,29 +129,112 @@ const { data: relatedExperiences } = await supabase
     }}
   >
     <img
-  src={heroPhoto.photo_url}
-  alt={heroPhoto.caption || experience.experience_name}
+      src={heroPhoto.photo_url}
+      alt={
+        heroPhoto.caption ||
+        experience.experience_name
+      }
+      style={{
+        width: "100%",
+        height: "auto",
+        borderRadius: "12px",
+        display: "block",
+      }}
+    />
+
+    <div
+  style={{
+    fontSize: ".85rem",
+    color: "#666",
+    marginTop: "8px",
+  }}
+>
+  {heroPhoto.caption && (
+    <div
+      style={{
+        marginBottom: "4px",
+      }}
+    >
+      {heroPhoto.caption}
+    </div>
+  )}
+
+  <div>
+    Photo: {heroPhoto.creator}
+    {" • "}
+    {heroPhoto.license}
+  </div>
+</div>
+  </div>
+)}
+ <h2
+  style={{
+    backgroundColor: school?.PrimaryColor,
+    color: school?.SecondaryColor,
+    padding: "12px",
+    borderRadius: "8px",
+    marginBottom: "16px",
+  }}
+>
+  Additional Photos
+</h2>
+{photos && photos.length > 1 && (
+  <div
+    style={{
+      marginBottom: "20px",
+      display: "grid",
+      gridTemplateColumns:
+  "repeat(auto-fit, minmax(320px, 1fr))",
+      gap: "12px",
+    }}
+  >
+    {photos.slice(1).map((photo) => (
+      <div
+  key={photo.photo_id}
+  style={{
+    backgroundColor: "#fff",
+    border: "1px solid #ddd",
+    borderRadius: "8px",
+    overflow: "hidden",
+  }}
+>
+        <img
+  src={photo.photo_url}
+  alt={photo.caption}
   style={{
     width: "100%",
     height: "auto",
-    borderRadius: "12px",
     display: "block",
+    objectFit: "contain",
   }}
 />
 
-    <div
-      style={{
-        fontSize: ".85rem",
-        color: "#666",
-        marginTop: "8px",
-      }}
-    >
-      Photo:
-      {" "}
-      {heroPhoto.creator}
-      {" • "}
-      {heroPhoto.license}
-    </div>
+        <div
+          style={{
+            fontSize: ".8rem",
+            color: "#666",
+            marginTop: "6px",
+            lineHeight: "1.4",
+          }}
+        >
+          {photo.caption && (
+            <div
+              style={{
+                marginBottom: "4px",
+              }}
+            >
+              {photo.caption}
+            </div>
+          )}
+
+          <div>
+            Photo: {photo.creator}
+            {" • "}
+            {photo.license}
+          </div>
+        </div>
+      </div>
+    ))}
   </div>
 )}
 
@@ -380,7 +460,7 @@ const { data: relatedExperiences } = await supabase
       style={{
         display: "grid",
         gridTemplateColumns:
-          "repeat(auto-fit, minmax(250px, 1fr))",
+          "repeat(auto-fit, minmax(400px, 1fr))",
         gap: "16px",
       }}
     >
