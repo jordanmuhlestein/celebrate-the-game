@@ -197,7 +197,8 @@ boxSizing: "border-box",
     </p>
 
     <p>
-      <strong>Enrollment:</strong> {data.Enrollment}
+      <strong>Enrollment:</strong>{" "}
+{Number(data.Enrollment).toLocaleString()}
     </p>
 
     <p>
