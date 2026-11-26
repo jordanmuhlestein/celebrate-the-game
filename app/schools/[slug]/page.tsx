@@ -7,22 +7,28 @@ export default async function SchoolPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  console.log("ROUTE SLUG:", slug);
 
-const { data } = await supabase
+console.log("ROUTE SLUG:", slug);
+
+const { data, error } = await supabase
   .from("schools")
   .select(`
     *,
     conferences (
-  ConferenceID,
-  ConferenceName,
-  ConferenceSlug,
-  ConferenceAbbreviation,
-  ConferencePrimaryColor,
-  ConferenceSecondaryColor
-)
+      ConferenceID,
+      ConferenceName,
+      ConferenceSlug,
+      ConferenceAbbreviation,
+      ConferencePrimaryColor,
+      ConferenceSecondaryColor
+    )
   `)
   .eq("SchoolSlug", slug)
   .single();
+
+console.log("SCHOOL DATA:", data);
+console.log("SCHOOL ERROR:", error);
 
   if (!data) {
     return <div>School not found.</div>;
@@ -60,7 +66,13 @@ console.log(
 
 
   return (
-    <main style={{ padding: "20px" }}>
+    <main
+  style={{
+    padding: "12px",
+    maxWidth: "100%",
+    overflowX: "hidden",
+  }}
+>
       <p>
         <Link href="/schools">
           ← Back to Schools Directory
@@ -75,11 +87,14 @@ console.log(
     borderRadius: "12px",
     textAlign: "center",
     marginBottom: "20px",
+    width: "100%",
+boxSizing: "border-box",
+
   }}
 >
   <div
   style={{
-    fontSize: "2.25rem",
+    fontSize: "clamp(1.75rem, 5vw, 2.25rem)",
     fontWeight: "bold",
   }}
 >
@@ -146,23 +161,28 @@ console.log(
      <div
   style={{
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
-    gap: "20px",
+    gridTemplateColumns:
+      "repeat(auto-fit, minmax(240px, 1fr))",
+    gap: "16px",
+    width: "100%",
   }}
 >
+
   <div
     style={{
       border: "1px solid #ccc",
       borderRadius: "12px",
       padding: "20px",
+      boxSizing: "border-box",
       boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+      width: "100%",
     }}
   >
     <h2
   style={{
     backgroundColor: data.PrimaryColor,
     color: data.SecondaryColor,
-    margin: "-20px -20px 20px -20px",
+    marginBottom: "20px",
     padding: "12px",
     borderTopLeftRadius: "12px",
     borderTopRightRadius: "12px",
@@ -194,7 +214,9 @@ console.log(
       border: "1px solid #ccc",
       borderRadius: "12px",
       padding: "20px",
+      boxSizing: "border-box",
       boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+      width: "100%",
     }}
   >
     <h2><b>School Colors</b></h2>
@@ -235,14 +257,16 @@ console.log(
       border: "1px solid #ccc",
       borderRadius: "12px",
       padding: "20px",
+      boxSizing: "border-box",
       boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+      width: "100%",
     }}
   >
 <h2
   style={{
     backgroundColor: data.PrimaryColor,
     color: data.SecondaryColor,
-    margin: "-20px -20px 20px -20px",
+    marginBottom: "20px",
     padding: "12px",
     borderTopLeftRadius: "12px",
     borderTopRightRadius: "12px",
@@ -259,14 +283,16 @@ console.log(
       border: "1px solid #ccc",
       borderRadius: "12px",
       padding: "20px",
+      boxSizing: "border-box",
       boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+      width: "100%",
     }}
   >
     <h2
   style={{
     backgroundColor: data.PrimaryColor,
     color: data.SecondaryColor,
-    margin: "-20px -20px 20px -20px",
+    marginBottom: "20px",
     padding: "12px",
     borderTopLeftRadius: "12px",
     borderTopRightRadius: "12px",
@@ -284,14 +310,16 @@ console.log(
       border: "1px solid #ccc",
       borderRadius: "12px",
       padding: "20px",
+      boxSizing: "border-box",
       boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+      width: "100%",
     }}
   >
     <h2
   style={{
     backgroundColor: data.PrimaryColor,
     color: data.SecondaryColor,
-    margin: "-20px -20px 20px -20px",
+    marginBottom: "20px",
     padding: "12px",
     borderTopLeftRadius: "12px",
     borderTopRightRadius: "12px",
@@ -309,14 +337,16 @@ console.log(
       border: "1px solid #ccc",
       borderRadius: "12px",
       padding: "20px",
+      boxSizing: "border-box",
       boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+      width: "100%",
     }}
   >
     <h2
   style={{
     backgroundColor: data.PrimaryColor,
     color: data.SecondaryColor,
-    margin: "-20px -20px 20px -20px",
+    marginBottom: "20px",
     padding: "12px",
     borderTopLeftRadius: "12px",
     borderTopRightRadius: "12px",
@@ -334,7 +364,9 @@ console.log(
     border: "1px solid #ccc",
     borderRadius: "12px",
     padding: "20px",
+    boxSizing: "border-box",
     boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+    width: "100%",
     gridColumn: "1 / -1",
   }}
 >
@@ -342,7 +374,7 @@ console.log(
     style={{
       backgroundColor: data.PrimaryColor,
       color: data.SecondaryColor,
-      margin: "-20px -20px 20px -20px",
+      marginBottom: "20px",
       padding: "12px",
       borderTopLeftRadius: "12px",
       borderTopRightRadius: "12px",
@@ -357,7 +389,7 @@ console.log(
       style={{
         display: "grid",
         gridTemplateColumns:
-          "repeat(auto-fit, minmax(250px, 1fr))",
+          "repeat(auto-fit, minmax(220px, 1fr))",
         gap: "16px",
       }}
     >
@@ -369,6 +401,8 @@ console.log(
     borderRadius: "8px",
     padding: "16px",
     backgroundColor: "#fafafa",
+    boxSizing: "border-box",
+    width: "100%",
   }}
 >
 <div
@@ -458,14 +492,16 @@ console.log(
     border: "1px solid #ccc",
     borderRadius: "12px",
     padding: "20px",
+    boxSizing: "border-box",
     boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+    width: "100%",
   }}
 >
   <h2
     style={{
       backgroundColor: data.PrimaryColor,
       color: data.SecondaryColor,
-      margin: "-20px -20px 20px -20px",
+      marginBottom: "20px",
       padding: "12px",
       borderTopLeftRadius: "12px",
       borderTopRightRadius: "12px",
@@ -519,7 +555,9 @@ console.log(
       border: "1px solid #ccc",
       borderRadius: "12px",
       padding: "20px",
+      boxSizing: "border-box",
       boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+      width: "100%",
       gridColumn: "1 / -1",
     }}
   >
@@ -527,7 +565,7 @@ console.log(
   style={{
     backgroundColor: data.PrimaryColor,
     color: data.SecondaryColor,
-    margin: "-20px -20px 20px -20px",
+    marginBottom: "20px",
     padding: "12px",
     borderTopLeftRadius: "12px",
     borderTopRightRadius: "12px",

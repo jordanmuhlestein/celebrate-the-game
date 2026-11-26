@@ -10,15 +10,17 @@ export default function Navbar() {
       }}
     >
       <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "16px 24px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
+  style={{
+    maxWidth: "1200px",
+    margin: "0 auto",
+    padding: "16px",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "12px",
+  }}
+>
         <Link
           href="/"
           style={{
@@ -42,11 +44,13 @@ export default function Navbar() {
         </Link>
 
         <div
-          style={{
-            display: "flex",
-            gap: "24px",
-          }}
-        >
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: "16px",
+  }}
+>
           <Link
             href="/"
             style={{
