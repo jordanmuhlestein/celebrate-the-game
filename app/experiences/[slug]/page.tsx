@@ -128,12 +128,15 @@ const { data: relatedExperiences } = await supabase
       marginBottom: "20px",
     }}
   >
-    <img
+    <Image
       src={heroPhoto.photo_url}
       alt={
         heroPhoto.caption ||
         experience.experience_name
       }
+      width={1200}
+      height={800}
+      unoptimized
       style={{
         width: "100%",
         height: "auto",
@@ -198,9 +201,12 @@ const { data: relatedExperiences } = await supabase
     overflow: "hidden",
   }}
 >
-        <img
+        <Image
   src={photo.photo_url}
   alt={photo.caption}
+  width={1200}
+  height={800}
+  unoptimized
   style={{
     width: "100%",
     height: "auto",

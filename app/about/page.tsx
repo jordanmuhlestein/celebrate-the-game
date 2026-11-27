@@ -150,7 +150,7 @@ export default function AboutPage() {
 </p>
 
 <p>
-  But the greatest thing they passed on to me wasn't
+  But the greatest thing they passed on to me wasn&apos;t
   fandom. It was values.
 </p>
 
@@ -205,8 +205,8 @@ export default function AboutPage() {
           margin: "30px 0",
         }}
       >
-        "Cheer all you want for your team, but don't
-        ever cheer against the other team."
+        &quot;Cheer all you want for your team, but don&apos;t
+        ever cheer against the other team.&quot;
       </div>
 
       <p>
@@ -264,7 +264,7 @@ export default function AboutPage() {
     margin: "20px 0",
   }}
 >
-  "I disagree!"
+  &quot;I disagree!&quot;
 </div>
 
 <p>

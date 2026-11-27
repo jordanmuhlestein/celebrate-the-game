@@ -88,7 +88,7 @@ export default function HomePage() {
     to joyful, respectful fandom in college sports.
     We believe every school, team, rivalry,
     tradition, and game day experience has something
-    worth celebrating. Whether you're preparing for a
+    worth celebrating. Whether you&apos;re preparing for a
     road trip, learning about a rival, introducing a
     child to college sports, or simply exploring the
     history and culture of the game, our goal is to
