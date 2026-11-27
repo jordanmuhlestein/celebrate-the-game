@@ -143,3 +143,26 @@ body {
     border-top: 1px solid rgb(255 255 255 / 25%);
   }
 }
+
+.experience-page {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.experience-page__photo-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+}
+
+.experience-page__details-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+}
+
+.experience-page__related-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+}
+
+.experience-page__photo-grid > *,
+.experience-page__details-grid > *,
+.experience-page__related-grid > * {
+  min-width: 0;
+}
