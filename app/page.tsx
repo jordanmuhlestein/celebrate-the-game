@@ -8,6 +8,7 @@ export default function HomePage() {
         maxWidth: "1100px",
         margin: "0 auto",
         padding: "40px 20px",
+        overflowWrap: "anywhere",
       }}
     >
       <div
@@ -88,7 +89,7 @@ export default function HomePage() {
     to joyful, respectful fandom in college sports.
     We believe every school, team, rivalry,
     tradition, and game day experience has something
-    worth celebrating. Whether you're preparing for a
+    worth celebrating. Whether you&apos;re preparing for a
     road trip, learning about a rival, introducing a
     child to college sports, or simply exploring the
     history and culture of the game, our goal is to
@@ -142,7 +143,7 @@ export default function HomePage() {
         style={{
           display: "grid",
           gridTemplateColumns:
-            "repeat(auto-fit, minmax(300px, 1fr))",
+            "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
           gap: "20px",
           marginBottom: "50px",
         }}
@@ -237,7 +238,7 @@ export default function HomePage() {
     style={{
       display: "grid",
       gridTemplateColumns:
-        "repeat(auto-fit, minmax(220px, 1fr))",
+        "repeat(auto-fit, minmax(min(100%, 220px), 1fr))",
       gap: "20px",
     }}
   >

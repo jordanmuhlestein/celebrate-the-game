@@ -13,11 +13,17 @@ type School = {
   SchoolSlug: string;
   PrimaryColor: string | null;
   SecondaryColor: string | null;
+
   conferences?: {
-  ConferenceAbbreviation: string;
-  ConferencePrimaryColor: string;
-  ConferenceSecondaryColor: string;
-}[];
+    ConferenceAbbreviation: string;
+    ConferencePrimaryColor: string;
+    ConferenceSecondaryColor: string;
+  }[];
+
+  school_aliases?: {
+    alias: string;
+    alias_type: string;
+  }[];
 };
 
 export default function SchoolsDirectory({
@@ -31,16 +37,22 @@ export default function SchoolsDirectory({
     const term = search.toLowerCase();
 
     return schools.filter((school) => {
-      return (
-        school.SchoolName?.toLowerCase().includes(term) ||
-        school.Nickname?.toLowerCase().includes(term) ||
-        school.City?.toLowerCase().includes(term) ||
-        school.State?.toLowerCase().includes(term) ||
-        school.conferences?.[0]?.ConferenceAbbreviation
-  ?.toLowerCase()
-  .includes(term)
-      );
-    });
+  const aliasMatch =
+    school.school_aliases?.some((alias) =>
+      alias.alias.toLowerCase().includes(term)
+    ) || false;
+
+  return (
+    school.SchoolName?.toLowerCase().includes(term) ||
+    school.Nickname?.toLowerCase().includes(term) ||
+    school.City?.toLowerCase().includes(term) ||
+    school.State?.toLowerCase().includes(term) ||
+    school.conferences?.[0]?.ConferenceAbbreviation
+      ?.toLowerCase()
+      .includes(term) ||
+    aliasMatch
+  );
+});
   }, [schools, search]);
 
   return (

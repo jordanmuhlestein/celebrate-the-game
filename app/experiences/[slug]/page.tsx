@@ -58,6 +58,7 @@ const { data: relatedExperiences } = await supabase
   .order("display_order");
   return (
     <main
+      className="experience-page"
       style={{
         maxWidth: "1200px",
         margin: "0 auto",
@@ -128,12 +129,15 @@ const { data: relatedExperiences } = await supabase
       marginBottom: "20px",
     }}
   >
-    <img
+    <Image
       src={heroPhoto.photo_url}
       alt={
         heroPhoto.caption ||
         experience.experience_name
       }
+      width={1200}
+      height={800}
+      unoptimized
       style={{
         width: "100%",
         height: "auto",
@@ -180,11 +184,10 @@ const { data: relatedExperiences } = await supabase
 </h2>
 {photos && photos.length > 1 && (
   <div
+    className="experience-page__photo-grid"
     style={{
       marginBottom: "20px",
       display: "grid",
-      gridTemplateColumns:
-  "repeat(auto-fit, minmax(320px, 1fr))",
       gap: "12px",
     }}
   >
@@ -198,9 +201,12 @@ const { data: relatedExperiences } = await supabase
     overflow: "hidden",
   }}
 >
-        <img
+        <Image
   src={photo.photo_url}
   alt={photo.caption}
+  width={1200}
+  height={800}
+  unoptimized
   style={{
     width: "100%",
     height: "auto",
@@ -239,10 +245,9 @@ const { data: relatedExperiences } = await supabase
 )}
 
       <div
+        className="experience-page__details-grid"
         style={{
           display: "grid",
-          gridTemplateColumns:
-            "repeat(auto-fit, minmax(350px, 1fr))",
           gap: "20px",
         }}
       >
@@ -457,10 +462,9 @@ const { data: relatedExperiences } = await supabase
   {relatedExperiences &&
   relatedExperiences.length > 0 ? (
     <div
+      className="experience-page__related-grid"
       style={{
         display: "grid",
-        gridTemplateColumns:
-          "repeat(auto-fit, minmax(400px, 1fr))",
         gap: "16px",
       }}
     >

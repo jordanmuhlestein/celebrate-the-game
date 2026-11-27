@@ -1,18 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
-export default function FeedbackPage({
-  searchParams,
+function FeedbackForm({
+  sourcePage,
 }: {
-  searchParams: {
-    page?: string;
-  };
+  sourcePage: string;
 }) {
-  const sourcePage =
-    searchParams.page || "/";
-
   const [feedbackType, setFeedbackType] =
     useState("General Feedback");
 
@@ -178,5 +174,20 @@ export default function FeedbackPage({
         </button>
       </form>
     </main>
+  );
+}
+
+function FeedbackPageContent() {
+  const searchParams = useSearchParams();
+  const sourcePage = searchParams.get("page") || "/";
+
+  return <FeedbackForm sourcePage={sourcePage} />;
+}
+
+export default function FeedbackPage() {
+  return (
+    <Suspense fallback={<FeedbackForm sourcePage="/" />}>
+      <FeedbackPageContent />
+    </Suspense>
   );
 }
