@@ -8,6 +8,7 @@ export default function HomePage() {
         maxWidth: "1100px",
         margin: "0 auto",
         padding: "40px 20px",
+        overflowWrap: "anywhere",
       }}
     >
       <div
@@ -142,7 +143,7 @@ export default function HomePage() {
         style={{
           display: "grid",
           gridTemplateColumns:
-            "repeat(auto-fit, minmax(300px, 1fr))",
+            "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
           gap: "20px",
           marginBottom: "50px",
         }}
@@ -237,7 +238,7 @@ export default function HomePage() {
     style={{
       display: "grid",
       gridTemplateColumns:
-        "repeat(auto-fit, minmax(220px, 1fr))",
+        "repeat(auto-fit, minmax(min(100%, 220px), 1fr))",
       gap: "20px",
     }}
   >
