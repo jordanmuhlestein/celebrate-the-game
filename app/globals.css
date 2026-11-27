@@ -24,3 +24,122 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.site-nav {
+  background-color: #1b5e20;
+  border-bottom: 3px solid #0f3d14;
+}
+
+.site-nav__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-nav__brand {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+}
+
+.site-nav__brand img {
+  display: block;
+  width: auto;
+  height: 90px;
+  max-width: 100%;
+}
+
+.site-nav__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.site-nav__links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.site-nav__links a:focus-visible,
+.site-nav__toggle:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+.site-nav__toggle {
+  display: none;
+}
+
+.site-nav__toggle-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.site-nav__toggle-icon span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: currentColor;
+}
+
+@media (max-width: 640px) {
+  .site-nav__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    justify-content: initial;
+    gap: 0 12px;
+    padding: 8px 12px;
+  }
+
+  .site-nav__brand {
+    min-width: 0;
+  }
+
+  .site-nav__brand img {
+    height: 52px;
+  }
+
+  .site-nav__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 8px 12px;
+    border: 1px solid rgb(255 255 255 / 75%);
+    border-radius: 6px;
+    background: transparent;
+    color: white;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .site-nav__links {
+    display: none;
+    grid-column: 1 / -1;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    padding-top: 8px;
+  }
+
+  .site-nav__links[data-open="true"] {
+    display: flex;
+  }
+
+  .site-nav__links a {
+    padding: 12px 8px;
+    border-top: 1px solid rgb(255 255 255 / 25%);
+  }
+}
